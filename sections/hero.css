@@ -44,6 +44,9 @@
 .hero-status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #c2410c; }
 .hero-status.is-open::before { background: #16a34a; box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2); }
 .hero-tilt { margin: 16px 0 0 12px; min-height: 44px; padding: 8px 14px; border: 0; cursor: pointer; }
+/* On phones the seasonal mascot sits fixed at the bottom left, over this button's spot, and took the
+   tap. Right-aligned, the button stays clear of it. */
+@media (max-width: 700px) { .hero-tilt { display: flex; width: fit-content; margin: 16px 0 0 auto; } }
 
 .hero-visual { perspective: 1200px; }
 /* The first photo is the LCP on phones: it slides in but is never transparent. */
