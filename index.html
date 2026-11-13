@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr" data-skin="clean">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Maison Rose — Salon de coiffure et beauté</title>
+  <meta name="description" content="Maison Rose, salon de coiffure et beauté : coupes, couleurs, balayage et soins. Consultez les prix, découvrez l’équipe et réservez en ligne." />
+  <!-- Draft with sample data: keep noindex until the client approves publishing. -->
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://rose-mery.appointmentsapps.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Maison Rose — Salon de coiffure et beauté" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:description" content="Coupes, couleurs, balayage et soins. Réservez en ligne." />
+  <meta property="og:url" content="https://rose-mery.appointmentsapps.com/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=70" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <script>
+    // Before first paint: the Christmas palette (same dates as app.js) and the hero photo preload.
+    (function () {
+      var q = /[?&]christmas=([01])/.exec(location.search);
+      var d = new Date(), md = d.getMonth() * 100 + d.getDate();
+      var on = q ? q[1] === '1' : (md >= 1006 || md <= 6);
+      if (on) document.documentElement.setAttribute('data-season', 'christmas');
+      var id = 'photo-1633681926022-84c23e8cb2d6';
+      var url = function (w) { return 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&crop=entropy&w=' + w + '&h=' + (w * 1.25) + '&q=62'; };
+      var link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.setAttribute('imagesrcset', [320, 640, 960].map(function (w) { return url(w) + ' ' + w + 'w'; }).join(', '));
+      link.setAttribute('imagesizes', '(max-width: 700px) 60vw, 420px');
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" />
+  <link rel="stylesheet" href="shared/shared.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="season/palettes.css" />
+  <link rel="preload" as="style" href="sections/hero.css" />
+  <link rel="modulepreload" href="app.js?v=2" />
+  <link rel="modulepreload" href="i18n/fr.js" />
+  <link rel="modulepreload" href="i18n/en.js" />
+  <link rel="modulepreload" href="core/state.js" />
+  <link rel="modulepreload" href="core/registry.js" />
+  <link rel="modulepreload" href="core/i18n.js" />
+  <link rel="modulepreload" href="core/dom.js" />
+  <link rel="modulepreload" href="core/theme.js" />
+  <link rel="modulepreload" href="core/season.js" />
+  <link rel="modulepreload" href="core/motion.js" />
+  <link rel="modulepreload" href="core/loader.js" />
+  <link rel="modulepreload" href="core/data.js" />
+  <link rel="modulepreload" href="core/page.js" />
+  <link rel="modulepreload" href="content/photos.js" />
+  <link rel="modulepreload" href="content/index.js" />
+  <link rel="modulepreload" href="content/beauty.js" />
+  <link rel="modulepreload" href="sections/hero.js?v=4" />
+  <link rel="modulepreload" href="shared/live.js" />
+  <link rel="modulepreload" href="shared/demo.js?v=6" />
+</head>
+
+<body>
+  <div class="stage" id="stage">
+    <main class="page" id="page" tabindex="-1">
+      <p class="page-loading" id="page-loading" aria-live="polite"></p>
+    </main>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <noscript>
+    <p class="noscript">Cette page a besoin de JavaScript pour afficher les prix et les horaires.</p>
+  </noscript>
+
+  <script src="shared/lightbox.js" defer></script>
+  <script type="module" src="app.js?v=2"></script>
+</body>
+
+</html>

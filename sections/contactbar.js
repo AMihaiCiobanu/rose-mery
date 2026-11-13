@@ -1,0 +1,42 @@
+// Contact bar that floats at the bottom: Call, WhatsApp and Book. The open / closed state sits on
+// the call button (it matters for a phone call); Book always says Online, since booking never closes. On a client page the two contact buttons become tel: and https://wa.me/ links.
+
+import { h, icon } from '../core/dom.js';
+import { bookButton, openState } from '../shared/live.js';
+
+export default {
+  render(ctx) {
+    const { t } = ctx;
+    const book = bookButton('', { linkId: ctx.linkId, className: 'cb-btn cb-book' });
+    book.append(icon('calendar', 20), h('span', { class: 'cb-text' }, h('span', { text: t('contactbar.book') }), h('small', { class: 'cb-online', text: t('contactbar.online') })));
+    return h('aside', { class: 'cb', 'aria-label': t('contactbar.label') },
+      h('div', { class: 'cb-inner' },
+        h('button', { type: 'button', class: 'cb-btn', 'data-demo': 'call' }, icon('phone', 20), h('span', { class: 'cb-text' }, h('span', { text: t('contactbar.call') }), h('small', { class: 'cb-state' }))),
+        h('button', { type: 'button', class: 'cb-btn cb-wa', 'data-demo': 'whatsapp' }, icon('whatsapp', 20), h('span', { text: t('contactbar.whatsapp') })),
+        book));
+  },
+
+  update(el, ctx) {
+    const node = el.querySelector('.cb-state');
+    const state = ctx.data && openState(ctx.data, { open: ctx.t('hours.openNow'), closed: ctx.t('hours.closedNow') });
+    // Short label in the bar (contactbar.open / .closed) where the language has one: "Ouvert maintenant" wraps on phones.
+    const short = key => { const v = ctx.t(`contactbar.${key}`); return v === `contactbar.${key}` ? '' : v; };
+    node.textContent = state ? (state.isOpen ? short('open') || ctx.t('hours.openNow') : short('closed') || ctx.t('hours.closedNow')) : '';
+    node.classList.toggle('is-open', !!state?.isOpen);
+  },
+
+  activate(el) {
+    // Hide while scrolling down quickly, show again when scrolling up or stopping.
+    let last = window.scrollY;
+    let timer = 0;
+    const onScroll = () => {
+      const y = window.scrollY;
+      el.classList.toggle('is-hidden', y > last + 4 && y > 400);
+      last = y;
+      clearTimeout(timer);
+      timer = setTimeout(() => el.classList.remove('is-hidden'), 700);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); clearTimeout(timer); };
+  }
+};
